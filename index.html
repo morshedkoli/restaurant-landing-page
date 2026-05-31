@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grand Indian – Authentic Indian Cuisine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="leaflet.css">
+</head>
+<body>
+
+<!-- PROMO POPUP -->
+<div id="promo-overlay" class="promo-overlay" role="dialog" aria-modal="true" aria-labelledby="promo-heading">
+  <div class="promo-modal">
+    <button class="promo-close" id="promo-close" aria-label="Close offer">&times;</button>
+
+    <div class="promo-top-label">Limited Time Offer</div>
+
+    <div class="promo-badge">
+      <span class="promo-percent">15%</span>
+      <span class="promo-off">OFF</span>
+    </div>
+
+    <h2 id="promo-heading" class="promo-heading">On Everything<br><em>On The Menu</em></h2>
+
+    <p class="promo-sub">Valid on your entire order — dine in or takeaway.<br>No code needed. Offer applied automatically.</p>
+
+    <div class="promo-divider"><span>&#9670;</span></div>
+
+    <div class="promo-actions">
+      <a href="#menu" class="btn btn-gold promo-btn-order" id="promo-order">Order Online</a>
+      <button class="promo-dismiss" id="promo-dismiss">Continue Browsing &rarr;</button>
+    </div>
+
+    <p class="promo-terms">*Offer valid for a limited period. Cannot be combined with other promotions.</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<header id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="logo">
+      <img src="logo.png" alt="Grand Indian" class="nav-logo-img">
+      <span class="logo-text">Grand Indian</span>
+    </a>
+    <button class="burger" id="burger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="nav-links">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reservations">Reservations</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#reservations" class="nav-cta">Book a Table</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-logo-wrap">
+      <img src="logo.png" alt="Grand Indian – A symphony of flavours" class="hero-logo-spin">
+    </div>
+    <p class="hero-desc">A journey through the flavours of India — crafted with heritage spices, seasonal ingredients, and decades of culinary passion.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-gold">Explore Menu</a>
+      <a href="#reservations" class="btn btn-outline">Reserve a Table</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span>&#9670; Halal Certified</span>
+    <span>&#9670; Award-Winning Cuisine</span>
+    <span>&#9670; Private Dining Available</span>
+    <span>&#9670; Takeaway &amp; Delivery</span>
+  </div>
+</div>
+
+<!-- FEATURED DISHES -->
+<section class="featured" id="featured">
+  <div class="section-label">Chef's Signature</div>
+  <h2 class="section-title">Featured Dishes</h2>
+  <div class="featured-grid">
+    <div class="featured-card" style="--img:url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80')">
+      <div class="fc-overlay"></div>
+      <div class="fc-content">
+        <p class="fc-tag">Starter</p>
+        <h3>Seekh Kebab</h3>
+        <p>Minced lamb blended with aromatic spices, chargrilled on skewers over open flame.</p>
+      </div>
+    </div>
+    <div class="featured-card large" style="--img:url('https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=1000&q=80')">
+      <div class="fc-overlay"></div>
+      <div class="fc-content">
+        <p class="fc-tag">Chef's Special</p>
+        <h3>Grand Lamb Shank</h3>
+        <p>Slow-braised in a rich masala of tomatoes, onions and whole spices until fall-off-the-bone tender.</p>
+      </div>
+    </div>
+    <div class="featured-card" style="--img:url('https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&q=80')">
+      <div class="fc-overlay"></div>
+      <div class="fc-content">
+        <p class="fc-tag">Biryani</p>
+        <h3>Royal Chicken Biryani</h3>
+        <p>Aged basmati layered with saffron, caramelised onions and tenderly spiced chicken.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="menu-section">
+  <div class="section-label">Our Offerings</div>
+  <h2 class="section-title">The Menu</h2>
+  <div class="menu-tabs">
+    <button class="tab active" data-tab="starters">Starters</button>
+    <button class="tab" data-tab="mains">Mains</button>
+    <button class="tab" data-tab="breads">Breads</button>
+    <button class="tab" data-tab="rice">Rice &amp; Biryani</button>
+    <button class="tab" data-tab="desserts">Desserts</button>
+    <button class="tab" data-tab="drinks">Drinks</button>
+  </div>
+
+  <div class="menu-panel active" id="starters">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="mi-info"><h4>Onion Bhaji</h4><p>Crispy spiced onion fritters served with mint chutney</p></div><span class="mi-price">£4.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Seekh Kebab</h4><p>Minced lamb with spices, chargrilled on skewers</p></div><span class="mi-price">£6.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Chicken Tikka</h4><p>Tender marinated chicken breast in spiced yoghurt, tandoor-roasted</p></div><span class="mi-price">£6.50</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Samosa (2 pcs)</h4><p>Crispy pastry parcels filled with spiced potato and peas</p></div><span class="mi-price">£4.50</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Sheekh Tikka</h4><p>Marinated paneer &amp; vegetable kebab from the clay oven</p></div><span class="mi-price">£5.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Mixed Grill Platter</h4><p>Selection of chicken tikka, seekh kebab, and tandoori wings</p></div><span class="mi-price">£12.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Prawn Puri</h4><p>Spiced prawns served on crispy puffed bread</p></div><span class="mi-price">£7.50</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Aloo Tikki</h4><p>Pan-fried spiced potato cakes with tamarind &amp; yoghurt dressing</p></div><span class="mi-price">£4.95</span></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" id="mains">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="mi-info"><h4>Butter Chicken</h4><p>Tender chicken in a velvety tomato &amp; cream sauce with fenugreek</p></div><span class="mi-price">£13.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Lamb Rogan Josh</h4><p>Slow-cooked lamb in Kashmiri spices with whole aromatics</p></div><span class="mi-price">£14.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Saag Paneer</h4><p>Fresh cottage cheese in spiced creamed spinach</p></div><span class="mi-price">£11.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>King Prawn Masala</h4><p>Jumbo prawns in a robust onion-tomato masala</p></div><span class="mi-price">£17.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Grand Lamb Shank</h4><p>Whole braised shank in rich masala — our signature centrepiece</p></div><span class="mi-price">£22.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Dal Makhani</h4><p>Black lentils slow-cooked overnight with butter and cream</p></div><span class="mi-price">£10.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Chicken Karahi</h4><p>Wok-tossed chicken with tomatoes, green chillies and ginger</p></div><span class="mi-price">£14.50</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Vegetable Korma</h4><p>Seasonal vegetables in a mild, fragrant coconut-cream sauce</p></div><span class="mi-price">£10.95</span></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" id="breads">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="mi-info"><h4>Plain Naan</h4><p>Soft leavened bread from the tandoor</p></div><span class="mi-price">£2.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Garlic Naan</h4><p>Tandoor bread topped with roasted garlic and butter</p></div><span class="mi-price">£3.50</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Peshwari Naan</h4><p>Sweet bread filled with almonds, coconut and sultanas</p></div><span class="mi-price">£3.75</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Keema Naan</h4><p>Spiced minced lamb stuffed inside tandoor bread</p></div><span class="mi-price">£4.50</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Paratha</h4><p>Flaky layered wholemeal flatbread cooked with ghee</p></div><span class="mi-price">£3.25</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Chapati</h4><p>Light, thin wholemeal bread cooked on the tawa</p></div><span class="mi-price">£2.25</span></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" id="rice">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="mi-info"><h4>Steamed Basmati Rice</h4><p>Fragrant long-grain basmati, simply steamed</p></div><span class="mi-price">£3.25</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Pilau Rice</h4><p>Basmati cooked with whole spices and golden onion</p></div><span class="mi-price">£3.75</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Royal Chicken Biryani</h4><p>Saffron-layered biryani with marinated chicken, dum-cooked</p></div><span class="mi-price">£16.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Lamb Biryani</h4><p>Slow-cooked lamb biryani sealed with dough and baked in the oven</p></div><span class="mi-price">£17.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Vegetable Biryani</h4><p>Seasonal vegetables with basmati rice and aromatic spices</p></div><span class="mi-price">£13.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Egg Fried Rice</h4><p>Indo-Chinese style wok-tossed rice with egg</p></div><span class="mi-price">£4.25</span></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" id="desserts">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="mi-info"><h4>Gulab Jamun</h4><p>Warm milk-solid dumplings soaked in rose-scented sugar syrup</p></div><span class="mi-price">£4.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Mango Kulfi</h4><p>Traditional Indian ice cream with Alphonso mango</p></div><span class="mi-price">£5.50</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Rasmalai</h4><p>Soft paneer discs in chilled saffron-cardamom cream</p></div><span class="mi-price">£5.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Kheer</h4><p>Slow-simmered rice pudding with pistachio and cardamom</p></div><span class="mi-price">£4.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Chocolate Kulfi</h4><p>House-made chocolate-cardamom kulfi on a stick</p></div><span class="mi-price">£5.50</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Gajar Halwa</h4><p>Carrot pudding slow-cooked with ghee, milk and cashews</p></div><span class="mi-price">£5.25</span></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" id="drinks">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="mi-info"><h4>Mango Lassi</h4><p>Chilled yoghurt drink blended with sweet Alphonso mango</p></div><span class="mi-price">£3.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Rose Lassi</h4><p>Yoghurt drink with rose water and a hint of cardamom</p></div><span class="mi-price">£3.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Masala Chai</h4><p>Spiced milk tea brewed with ginger, cardamom and cinnamon</p></div><span class="mi-price">£2.95</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Fresh Lime Soda</h4><p>Sparkling water with fresh lime and mint, sweet or salted</p></div><span class="mi-price">£2.75</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>Kingfisher Beer (330ml)</h4><p>Classic Indian lager, crisp and refreshing</p></div><span class="mi-price">£4.50</span></div>
+      <div class="menu-item"><div class="mi-info"><h4>House Red / White Wine</h4><p>Carefully selected wines to complement Indian spice</p></div><span class="mi-price">£5.95</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+  <div class="about-visual">
+    <div class="about-img" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80')"></div>
+    <div class="about-accent-box">
+      <span class="acb-num">25+</span>
+      <span class="acb-label">Years of Culinary Heritage</span>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="section-label">Our Story</div>
+    <h2 class="section-title left">A Passion for<br><em>Authentic Flavour</em></h2>
+    <p>Founded in 1998, The Grand Indian was born from a simple belief: that Indian cuisine deserves to be experienced in all its depth and complexity. Our founders brought recipes passed down through generations — from the clay kitchens of Punjab to the coastal spice markets of Kerala.</p>
+    <p>Every dish on our menu is a celebration of regional diversity. We source whole spices directly, grind them fresh each morning, and cook using traditional methods that cannot be rushed.</p>
+    <div class="about-stats">
+      <div class="stat"><span class="stat-n">5★</span><span class="stat-l">Rated on Google</span></div>
+      <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Halal Certified</span></div>
+      <div class="stat"><span class="stat-n">60+</span><span class="stat-l">Menu Items</span></div>
+    </div>
+    <a href="#menu" class="btn btn-gold">View Our Menu</a>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="gallery-section">
+  <div class="section-label">Atmosphere &amp; Food</div>
+  <h2 class="section-title">A Glimpse Inside</h2>
+  <div class="gallery-grid">
+    <div class="g-item tall" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80')"></div>
+    <div class="g-item" style="background-image:url('https://images.unsplash.com/photo-1567337710282-00832b415979?w=600&q=80')"></div>
+    <div class="g-item" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80')"></div>
+    <div class="g-item wide" style="background-image:url('https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=900&q=80')"></div>
+    <div class="g-item" style="background-image:url('https://images.unsplash.com/photo-1596797038530-2c107229654b?w=600&q=80')"></div>
+  </div>
+</section>
+
+<!-- RESERVATIONS -->
+<section id="reservations" class="reservations-section">
+  <div class="res-bg"></div>
+  <div class="res-inner">
+    <div class="res-text">
+      <div class="section-label light">Make a Reservation</div>
+      <h2 class="section-title light">Join Us for<br><em>an Unforgettable Evening</em></h2>
+      <p>We welcome walk-ins, but to guarantee your table — especially on weekends — please book in advance. Private dining and event bookings available on request.</p>
+      <div class="res-hours">
+        <div class="rh-row"><span>Monday – Sunday</span><span>17:30 – 23:00</span></div>
+      </div>
+    </div>
+    <form class="res-form" id="res-form">
+      <h3>Reserve Your Table</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="James" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="james@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" placeholder="+44 7700 000000">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+          <label for="time">Time</label>
+          <select id="time" required>
+            <option value="">Select time</option>
+            <option>5:00 PM</option><option>5:30 PM</option>
+            <option>6:00 PM</option><option>6:30 PM</option>
+            <option>7:00 PM</option><option>7:30 PM</option>
+            <option>8:00 PM</option><option>8:30 PM</option>
+            <option>9:00 PM</option><option>9:30 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="guests">Number of Guests</label>
+        <select id="guests" required>
+          <option value="">Select guests</option>
+          <option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5</option><option>6</option>
+          <option>7</option><option>8+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="notes">Special Requests</label>
+        <textarea id="notes" placeholder="Dietary requirements, celebrations, accessibility needs…" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-gold full">Confirm Reservation</button>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-label">Find Us</div>
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="cc-icon">&#9672;</div>
+      <h4>Address</h4>
+      <p>Grand Indian<br>151 Crwys Rd<br>Cardiff CF24 4NH</p>
+    </div>
+    <div class="contact-card">
+      <div class="cc-icon">&#9672;</div>
+      <h4>Telephone</h4>
+      <p><a href="tel:02920343705">029 2034 3705</a></p>
+    </div>
+    <div class="contact-card">
+      <div class="cc-icon">&#9672;</div>
+      <h4>Email</h4>
+      <p><a href="mailto:info@grandindian.co.uk">info@grandindian.co.uk</a></p>
+    </div>
+    <div class="contact-card">
+      <div class="cc-icon">&#9672;</div>
+      <h4>Opening Hours</h4>
+      <p>Open 7 Days a Week<br>17:30 – 23:00</p>
+    </div>
+  </div>
+
+  <div class="map-wrap">
+    <div class="map-label">
+      <span class="map-pin">&#9672;</span>
+      <span>151 Crwys Rd, Cardiff CF24 4NH</span>
+      <a href="https://maps.google.com/?q=151+Crwys+Rd,+Cardiff+CF24+4NH" target="_blank" rel="noopener" class="map-directions">Get Directions &rarr;</a>
+    </div>
+    <div class="map-frame">
+      <div id="leaflet-map"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Grand Indian" style="width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 4px rgba(201,168,76,0.4))">
+      <span class="logo-text">Grand Indian</span>
+      <p>151 Crwys Rd, Cardiff CF24 4NH &nbsp;·&nbsp; 029 2034 3705</p>
+    </div>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reservations">Reservations</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-social">
+      <a href="#" aria-label="Facebook">&#9670; Facebook</a>
+      <a href="#" aria-label="Instagram">&#9670; Instagram</a>
+      <a href="#" aria-label="TripAdvisor">&#9670; TripAdvisor</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 The Grand Indian. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
